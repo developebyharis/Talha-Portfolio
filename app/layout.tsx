@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,7 +31,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navigation />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen">
+            {children} <Analytics />
+          </main>
           <Footer />
         </ThemeProvider>
         <Analytics />
