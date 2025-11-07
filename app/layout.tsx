@@ -32,7 +32,7 @@ export default function RootLayout({
         >
           <Navigation />
           <main className="min-h-screen">
-            {children} <Analytics />
+            {children} 
           </main>
           <Footer />
         </ThemeProvider>
