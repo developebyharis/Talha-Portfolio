@@ -25,7 +25,6 @@ export default async function BlogDetailPage({
     <div className="relative min-h-screen">
       <CircuitBackground />
 
-      {/* Hero Section */}
       <div className="relative border-b bg-background/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-12">
           <Link href="/blog">
@@ -66,7 +65,6 @@ export default async function BlogDetailPage({
         </div>
       </div>
 
-      {/* Content Section */}
       <div className="relative">
         <div className="container mx-auto px-4 py-12">
           <div className="mx-auto max-w-4xl">

@@ -125,7 +125,6 @@ export default async function AboutPage() {
             </div>
 
             <div className="grid gap-8 lg:grid-cols-2">
-              {/* Education */}
               <Card className="border-primary/20 bg-card/50 tech-glow">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
@@ -161,7 +160,6 @@ export default async function AboutPage() {
                 </CardContent>
               </Card>
 
-              {/* Certifications */}
               <Card className="border-secondary/20 bg-card/50 tech-glow">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
@@ -188,7 +186,6 @@ export default async function AboutPage() {
               </Card>
             </div>
 
-            {/* Experience */}
             <Card className="mt-8 border-accent/20 bg-card/50 tech-glow">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">

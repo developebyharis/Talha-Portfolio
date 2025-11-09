@@ -7,7 +7,6 @@ export default async function ContactPage() {
   return (
     <div className="container mx-auto px-4 py-20">
       <div className="mx-auto max-w-4xl">
-        {/* Heading */}
         <h1 className="mb-4 text-4xl font-bold text-balance md:text-5xl text-center md:text-left">
           Get In Touch
         </h1>
@@ -17,7 +16,6 @@ export default async function ContactPage() {
         </p>
 
         <div className="space-y-8">
-          {/* Contact Info */}
           <Card className="shadow-md">
             <CardHeader>
               <CardTitle className="text-xl md:text-2xl">
@@ -25,7 +23,6 @@ export default async function ContactPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="grid gap-6 sm:grid-cols-2">
-              {/* Email */}
               <div className="flex items-center gap-3">
                 <div className="rounded-full bg-primary/10 p-2">
                   <Mail className="h-5 w-5 text-primary" />
@@ -41,7 +38,6 @@ export default async function ContactPage() {
                 </div>
               </div>
 
-              {/* LinkedIn */}
               <div className="flex items-center gap-3">
                 <div className="rounded-full bg-primary/10 p-2">
                   <Linkedin className="h-5 w-5 text-primary" />
@@ -59,7 +55,6 @@ export default async function ContactPage() {
                 </div>
               </div>
 
-              {/* GitHub */}
               <div className="flex items-center gap-3">
                 <div className="rounded-full bg-primary/10 p-2">
                   <Github className="h-5 w-5 text-primary" />
@@ -92,7 +87,6 @@ export default async function ContactPage() {
             </CardContent>
           </Card>
 
-          {/* Availability */}
           <Card className="shadow-md">
             <CardHeader>
               <CardTitle className="text-xl md:text-2xl">Availability</CardTitle>

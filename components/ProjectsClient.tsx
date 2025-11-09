@@ -24,7 +24,6 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      {/* Filter Section */}
       <section className="py-8 bg-muted/30 border-b">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-6xl">
@@ -52,7 +51,6 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
         </div>
       </section>
 
-      {/* Projects Grid */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-6xl">

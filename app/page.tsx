@@ -23,20 +23,15 @@ export default async function HomePage() {
     FetchProjects(),
     FetchResearchPapers(),
   ]);
-  // console.log("skills",skills.map((sk) => sk.techStack))
   return (
     <div className="flex flex-col">
       <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-        {/* Background */}
         <CircuitBackground />
 
-        {/* Overlay for better text visibility */}
         <div className="absolute inset-0 z-0" />
 
-        {/* Main content */}
         <div className="container relative z-10 mx-auto px-6 py-20">
           <div className="mx-auto max-w-5xl text-center md:text-left">
-            {/* Title badge */}
             <div className="mb-8 flex items-center justify-center md:justify-start gap-3">
               <div className="h-px w-12 bg-primary" />
               <Badge
@@ -47,7 +42,6 @@ export default async function HomePage() {
               </Badge>
             </div>
 
-            {/* Name */}
             <TypingAnimation
               words={[about.name]}
               cursorStyle="underscore"
@@ -55,12 +49,10 @@ export default async function HomePage() {
               className="mb-6 text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-balance leading-tight"
             />
 
-            {/* Description */}
             <p className="mb-8 text-base sm:text-lg text-muted-foreground max-w-3xl leading-relaxed mx-auto md:mx-0">
               {about.description}
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-12">
               <Button asChild size="lg" className="gap-2">
                 <Link href="/projects">
@@ -82,7 +74,6 @@ export default async function HomePage() {
               </Button>
             </div>
 
-            {/* Social Icons */}
             <div className="flex justify-center md:justify-start gap-4 mb-16">
               <Button variant="outline" size="icon" asChild>
                 <Link href={github} target="_blank" rel="noopener noreferrer">
@@ -103,7 +94,6 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="h-12 w-6 rounded-full border-2 border-primary/50 flex items-start justify-center p-2">
             <div className="h-2 w-1 bg-primary rounded-full" />
@@ -133,7 +123,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-      {/* Featured Projects */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="mb-16 text-center">
@@ -166,7 +155,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-      {/* Research Section */}
       <section className="py-20 circuit-pattern">
         <div className="container mx-auto px-4">
           <div className="mb-16 text-center">
