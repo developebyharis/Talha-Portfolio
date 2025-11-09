@@ -17,8 +17,12 @@ import {
   FetchResearchPapers,
   FetchSkills,
 } from "@/lib/Contentful";
+          // import ProfileCard from './ProfileCard'
+
 import ProjectCard from "@/components/ProjectCard";
 import ResearchCard from "@/components/ResearchCard";
+
+
 export default async function HomePage() {
   const [about, skills, projects, researchPapers] = await Promise.all([
     FetchAbout(),
@@ -29,78 +33,104 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden circuit-pattern">
-        <CircuitBackground />
+  <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
+  {/* Background */}
+  <CircuitBackground />
 
-        <div className="container relative z-10 mx-auto px-4 py-20">
-          <div className="mx-auto max-w-5xl">
-            <div className="mb-8 flex items-center gap-3">
-              <div className="h-px w-12 bg-primary" />
-              <Badge
-                variant="outline"
-                className="border-primary/50 text-primary font-mono"
-              >
-                {about.title}
-              </Badge>
-            </div>
+  {/* Overlay for better text visibility */}
+  <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 z-0" />
 
-            <h1 className="mb-6 text-6xl font-bold tracking-tight text-balance sm:text-7xl md:text-8xl">
-              {about.name}
-            </h1>
+  {/* Main content */}
+  <div className="container relative z-10 mx-auto px-6 py-20">
+    <div className="mx-auto max-w-5xl text-center md:text-left">
+      {/* Title badge */}
+      <div className="mb-8 flex items-center justify-center md:justify-start gap-3">
+        <div className="h-px w-12 bg-primary" />
+        <Badge
+          variant="outline"
+          className="border-primary/50 text-primary font-mono"
+        >
+          {about.title}
+        </Badge>
+      </div>
 
-            <p className="mb-8 text-lg text-muted-foreground text-balance max-w-3xl leading-relaxed">
-              {about.description}
-            </p>
+      {/* Name */}
+      <h1 className="mb-6 text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-balance leading-tight">
+        {about.name}
+      </h1>
 
-            <div className="flex flex-wrap gap-4 mb-12">
-              <Button asChild size="lg" className="gap-2">
-                <Link href="/projects">
-                  <Cpu className="h-5 w-5" />
-                  View Projects
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/contact">
-                  <Mail className="h-5 w-5" />
-                  Get In Touch
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="ghost">
-                <Link href="/about">
-                  About Me
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
+      {/* Description */}
+      <p className="mb-8 text-base sm:text-lg text-muted-foreground max-w-3xl leading-relaxed mx-auto md:mx-0">
+        {about.description}
+      </p>
 
-            {/* Social Links */}
-            <div className="flex gap-4">
-              <Button variant="outline" size="icon" asChild>
-                <Link href="https://github.com" target="_blank">
-                  <Github className="h-5 w-5" />
-                </Link>
-              </Button>
-              <Button variant="outline" size="icon" asChild>
-                <Link href="https://linkedin.com" target="_blank">
-                  <Linkedin className="h-5 w-5" />
-                </Link>
-              </Button>
-              <Button variant="outline" size="icon" asChild>
-                <Link href="mailto:haris@example.com">
-                  <Mail className="h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
+      {/* CTA Buttons */}
+      <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-12">
+        <Button asChild size="lg" className="gap-2">
+          <Link href="/projects">
+            <Cpu className="h-5 w-5" />
+            View Projects
+          </Link>
+        </Button>
+        <Button asChild size="lg" variant="outline" className="gap-2">
+          <Link href="/contact">
+            <Mail className="h-5 w-5" />
+            Get In Touch
+          </Link>
+        </Button>
+        <Button asChild size="lg" variant="ghost" className="gap-2">
+          <Link href="/about">
+            About Me
+            <ArrowRight className="h-5 w-5" />
+          </Link>
+        </Button>
+      </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="h-12 w-6 rounded-full border-2 border-primary/50 flex items-start justify-center p-2">
-            <div className="h-2 w-1 bg-primary rounded-full" />
-          </div>
-        </div>
-      </section>
+      {/* Social Icons */}
+      <div className="flex justify-center md:justify-start gap-4 mb-16">
+        <Button variant="outline" size="icon" asChild>
+          <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <Github className="h-5 w-5" />
+          </Link>
+        </Button>
+        <Button variant="outline" size="icon" asChild>
+          <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <Linkedin className="h-5 w-5" />
+          </Link>
+        </Button>
+        <Button variant="outline" size="icon" asChild>
+          <Link href="mailto:haris@example.com">
+            <Mail className="h-5 w-5" />
+          </Link>
+        </Button>
+      </div>
+
+      {/* Profile Card */}
+      <div className="flex justify-center md:justify-start">
+        {/* <ProfileCard
+          name="Javi A. Torres"
+          title="Software Engineer"
+          handle="javicodes"
+          status="Online"
+          contactText="Contact Me"
+          avatarUrl="/path/to/avatar.jpg"
+          showUserInfo={true}
+          enableTilt={true}
+          enableMobileTilt={false}
+          onContactClick={() => console.log('Contact clicked')}
+        /> */}
+      </div>
+    </div>
+  </div>
+
+  {/* Scroll indicator */}
+  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <div className="h-12 w-6 rounded-full border-2 border-primary/50 flex items-start justify-center p-2">
+      <div className="h-2 w-1 bg-primary rounded-full" />
+    </div>
+  </div>
+</section>
+
 
       <section className="py-20 circuit-pattern border-t">
         <div className="container mx-auto px-4">
