@@ -4,6 +4,7 @@ import { FetchResearchPapers } from "@/lib/Contentful";
 
 export default async function ResearchPage() {
   const researchPapers = await FetchResearchPapers();
+  
   return (
     <div className="flex flex-col">
       <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden circuit-pattern border-b">

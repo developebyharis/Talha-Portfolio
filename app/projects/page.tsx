@@ -1,39 +1,9 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { CircuitBackground } from "@/components/circuit-background";
+import ProjectsClient from "@/components/ProjectsClient";
 import { FetchProjects } from "@/lib/Contentful";
-import ProjectCard from "@/components/ProjectCard";
 
-export default function ProjectsPage() {
-  interface Project {
-    name: string;
-    description: string;
-    category: string;
-    techStack: string[];
-    thumbnail: any;
-  }
-
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  useEffect(() => {
-    const getProjects = async () => {
-      const data = await FetchProjects();
-      setProjects(data);
-    };
-    getProjects();
-  }, []);
-
-  const categories = [
-    "All",
-    ...Array.from(new Set(projects.map((c) => c.category))),
-  ];
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter((project) => project.category === selectedCategory);
+export default async function ProjectsPage() {
+  const projects = await FetchProjects();
 
   return (
     <div className="flex flex-col">
@@ -56,50 +26,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="py-8 bg-muted/30 border-b">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-6xl">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="text-sm font-medium text-muted-foreground font-mono">
-                FILTER_BY:
-              </span>
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={
-                    selectedCategory === category ? "default" : "outline"
-                  }
-                  size="sm"
-                  onClick={() => setSelectedCategory(category)}
-                  className="font-mono text-xs"
-                >
-                  {category}
-                </Button>
-              ))}
-              <span className="ml-auto text-sm text-muted-foreground font-mono">
-                {filteredProjects.length} PROJECT
-                {filteredProjects.length !== 1 ? "S" : ""}
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {filteredProjects.map((project) => (
-                <ProjectCard
-                  key={project.name}
-                  project={project}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <ProjectsClient projects={projects} />
     </div>
   );
 }
