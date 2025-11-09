@@ -11,14 +11,15 @@ import {
   FetchProjects,
   FetchSkills,
 } from "@/lib/Contentful";
-import { getContentfulAssetUrl } from "@/lib/utils";
-import { Asset } from "contentful";
+import { CoolBtn } from "@/components/creativeDesign/CoolBtn";
+import { Button } from "@/components/ui/button";
+import SkillCard from "@/components/SkillCard";
 
 export default async function AboutPage() {
   const [about, skills, education, certificates, experience, projects] =
     await Promise.all([
       FetchAbout(),
-      FetchSkills(),
+      FetchSkills() as any,
       FetchEducation(),
       FetchCertificate(),
       FetchExperience(),
@@ -236,37 +237,9 @@ export default async function AboutPage() {
                 Technology Stack
               </h2>
             </div>
-
-            <Card className="border-none shadow-none">
-              <CardContent className="p-3">
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                  {skills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="bg-slate-200/50 p-4 rounded-lg shadow"
-                    >
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="h-1 w-1 rounded-full bg-primary" />
-                        <h4 className="font-semibold text-sm uppercase tracking-wider text-primary">
-                          {skill.title}
-                        </h4>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {skill.techStack.map((tech, index) => (
-                          <Badge
-                            variant="secondary"
-                            className="font-mono"
-                            key={index}
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <SkillCard data={skills} />
+            </div>
           </div>
         </div>
       </section>

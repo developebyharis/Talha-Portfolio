@@ -1,185 +1,137 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { CircuitBackground } from "@/components/circuit-background";
-import {
-  ArrowRight,
-  Github,
-  Linkedin,
-  Mail,
-  Cpu,
-  BookOpen,
-} from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Cpu } from "lucide-react";
 import {
   FetchAbout,
   FetchProjects,
   FetchResearchPapers,
   FetchSkills,
 } from "@/lib/Contentful";
-          // import ProfileCard from './ProfileCard'
 
 import ProjectCard from "@/components/ProjectCard";
 import ResearchCard from "@/components/ResearchCard";
-
+import { TypingAnimation } from "@/components/creativeDesign/TextTyping";
+import { email, github, linkedin } from "@/lib/data";
+import SkillCard from "@/components/SkillCard";
 
 export default async function HomePage() {
   const [about, skills, projects, researchPapers] = await Promise.all([
     FetchAbout(),
-    FetchSkills(),
+    FetchSkills() as any,
     FetchProjects(),
     FetchResearchPapers(),
   ]);
-
+  // console.log("skills",skills.map((sk) => sk.techStack))
   return (
     <div className="flex flex-col">
-  <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-  {/* Background */}
-  <CircuitBackground />
+      <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
+        {/* Background */}
+        <CircuitBackground />
 
-  {/* Overlay for better text visibility */}
-  <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 z-0" />
+        {/* Overlay for better text visibility */}
+        <div className="absolute inset-0 z-0" />
 
-  {/* Main content */}
-  <div className="container relative z-10 mx-auto px-6 py-20">
-    <div className="mx-auto max-w-5xl text-center md:text-left">
-      {/* Title badge */}
-      <div className="mb-8 flex items-center justify-center md:justify-start gap-3">
-        <div className="h-px w-12 bg-primary" />
-        <Badge
-          variant="outline"
-          className="border-primary/50 text-primary font-mono"
-        >
-          {about.title}
-        </Badge>
-      </div>
-
-      {/* Name */}
-      <h1 className="mb-6 text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-balance leading-tight">
-        {about.name}
-      </h1>
-
-      {/* Description */}
-      <p className="mb-8 text-base sm:text-lg text-muted-foreground max-w-3xl leading-relaxed mx-auto md:mx-0">
-        {about.description}
-      </p>
-
-      {/* CTA Buttons */}
-      <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-12">
-        <Button asChild size="lg" className="gap-2">
-          <Link href="/projects">
-            <Cpu className="h-5 w-5" />
-            View Projects
-          </Link>
-        </Button>
-        <Button asChild size="lg" variant="outline" className="gap-2">
-          <Link href="/contact">
-            <Mail className="h-5 w-5" />
-            Get In Touch
-          </Link>
-        </Button>
-        <Button asChild size="lg" variant="ghost" className="gap-2">
-          <Link href="/about">
-            About Me
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </Button>
-      </div>
-
-      {/* Social Icons */}
-      <div className="flex justify-center md:justify-start gap-4 mb-16">
-        <Button variant="outline" size="icon" asChild>
-          <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
-            <Github className="h-5 w-5" />
-          </Link>
-        </Button>
-        <Button variant="outline" size="icon" asChild>
-          <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-            <Linkedin className="h-5 w-5" />
-          </Link>
-        </Button>
-        <Button variant="outline" size="icon" asChild>
-          <Link href="mailto:haris@example.com">
-            <Mail className="h-5 w-5" />
-          </Link>
-        </Button>
-      </div>
-
-      {/* Profile Card */}
-      <div className="flex justify-center md:justify-start">
-        {/* <ProfileCard
-          name="Javi A. Torres"
-          title="Software Engineer"
-          handle="javicodes"
-          status="Online"
-          contactText="Contact Me"
-          avatarUrl="/path/to/avatar.jpg"
-          showUserInfo={true}
-          enableTilt={true}
-          enableMobileTilt={false}
-          onContactClick={() => console.log('Contact clicked')}
-        /> */}
-      </div>
-    </div>
-  </div>
-
-  {/* Scroll indicator */}
-  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <div className="h-12 w-6 rounded-full border-2 border-primary/50 flex items-start justify-center p-2">
-      <div className="h-2 w-1 bg-primary rounded-full" />
-    </div>
-  </div>
-</section>
-
-
-      <section className="py-20 circuit-pattern border-t">
-        <div className="container mx-auto px-4">
-          <div className="mb-16 text-center">
-            <div className="mb-4 inline-flex items-center gap-2 text-sm text-primary font-mono">
-              <div className="h-px w-8 bg-primary" />
-              CORE_COMPETENCIES
-              <div className="h-px w-8 bg-primary" />
-            </div>
-            <h2 className="text-4xl font-bold text-balance mb-4">
-              Technical Expertise
-            </h2>
-            <p className="text-lg text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
-              Comprehensive skill set across the embedded systems development
-              lifecycle
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {skills.map((skill, index) => (
-              <Card
-                className="border-primary/20 bg-card/50 hover:border-primary/50 transition-colors tech-glow"
-                key={index}
+        {/* Main content */}
+        <div className="container relative z-10 mx-auto px-6 py-20">
+          <div className="mx-auto max-w-5xl text-center md:text-left">
+            {/* Title badge */}
+            <div className="mb-8 flex items-center justify-center md:justify-start gap-3">
+              <div className="h-px w-12 bg-primary" />
+              <Badge
+                variant="outline"
+                className="border-primary/50 text-primary font-mono"
               >
-                <CardContent className="p-6">
-                  <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-3">
-                    <Cpu className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="mb-2 text-xl font-semibold">{skill.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {skill.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {skill.techStack.map((tech, index) => (
-                      <Badge
-                        variant="secondary"
-                        className="text-xs font-mono"
-                        key={index}
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                {about.title}
+              </Badge>
+            </div>
+
+            {/* Name */}
+            <TypingAnimation
+              words={[about.name]}
+              cursorStyle="underscore"
+              loop
+              className="mb-6 text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-balance leading-tight"
+            />
+
+            {/* Description */}
+            <p className="mb-8 text-base sm:text-lg text-muted-foreground max-w-3xl leading-relaxed mx-auto md:mx-0">
+              {about.description}
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-12">
+              <Button asChild size="lg" className="gap-2">
+                <Link href="/projects">
+                  <Cpu className="h-5 w-5" />
+                  View Projects
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="gap-2">
+                <Link href="/contact">
+                  <Mail className="h-5 w-5" />
+                  Get In Touch
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="ghost" className="gap-2">
+                <Link href="/about">
+                  About Me
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex justify-center md:justify-start gap-4 mb-16">
+              <Button variant="outline" size="icon" asChild>
+                <Link href={github} target="_blank" rel="noopener noreferrer">
+                  <Github className="h-5 w-5" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="icon" asChild>
+                <Link href={linkedin} target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="h-5 w-5" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="icon" asChild>
+                <Link href={email}>
+                  <Mail className="h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="h-12 w-6 rounded-full border-2 border-primary/50 flex items-start justify-center p-2">
+            <div className="h-2 w-1 bg-primary rounded-full" />
           </div>
         </div>
       </section>
+        <section className="py-20 circuit-pattern border-t">
+          <div className="container mx-auto px-4">
+            <div className="mb-16 text-center">
+              <div className="mb-4 inline-flex items-center gap-2 text-sm text-primary font-mono">
+                <div className="h-px w-8 bg-primary" />
+                CORE_COMPETENCIES
+                <div className="h-px w-8 bg-primary" />
+              </div>
+              <h2 className="text-4xl font-bold text-balance mb-4">
+                Technical Expertise
+              </h2>
+              <p className="text-lg text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
+                Comprehensive skill set across the embedded systems development
+                lifecycle
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <SkillCard data={skills} />
+            </div>
+          </div>
+        </section>
 
       {/* Featured Projects */}
       <section className="py-20 bg-muted/30">

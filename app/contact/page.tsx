@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { email, github, linkedin } from "@/lib/data";
 import { Mail, Linkedin, Github, MapPin } from "lucide-react";
 import Link from "next/link";
 
@@ -32,10 +33,10 @@ export default async function ContactPage() {
                 <div>
                   <p className="text-sm font-medium">Email</p>
                   <Link
-                    href="mailto:haris@example.com"
+                    href={email}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors break-all"
                   >
-                    haris@example.com
+                    {email}
                   </Link>
                 </div>
               </div>
@@ -48,12 +49,12 @@ export default async function ContactPage() {
                 <div>
                   <p className="text-sm font-medium">LinkedIn</p>
                   <Link
-                    href="https://linkedin.com/in/hariskhan"
+                    href={linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-muted-foreground hover:text-primary transition-colors break-all"
                   >
-                    linkedin.com/in/hariskhan
+                    {linkedin}
                   </Link>
                 </div>
               </div>
@@ -66,12 +67,12 @@ export default async function ContactPage() {
                 <div>
                   <p className="text-sm font-medium">GitHub</p>
                   <Link
-                    href="https://github.com/hariskhan"
+                    href={github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-muted-foreground hover:text-primary transition-colors break-all"
                   >
-                    github.com/hariskhan
+                    {github}
                   </Link>
                 </div>
               </div>

@@ -52,13 +52,32 @@ export async function FetchProjects() {
 }
 
 export async function FetchSkills() {
-  const res = await client.getEntries({ content_type: "skills" });
-  const data = res.items.map((item) => {
-    const title = item.fields.title as string;
-    const description = item.fields.description as string;
-    const techStack = item.fields.tech as string[];
-    return { title, description, techStack };
+  const res = await client.getEntries({
+    content_type: "skills",
   });
+
+  const data = res.items.map((item) => {
+    const { title, description, skill } = item.fields;
+
+    const skillArray = Array.isArray(skill) ? skill : [];
+
+    const techStack = skillArray
+      .map((s: any) => {
+        if (!s || !("fields" in s)) return null;
+        return {
+          tech: s.fields.skill,
+          image: s.fields.image?.fields?.file?.url || null,
+          color: s?.fields?.color || "#008f9f"
+        };
+      })
+      .filter(Boolean);
+    return {
+      title,
+      description,
+      techStack,
+    };
+  });
+
   return data;
 }
 
